@@ -49,7 +49,7 @@
   }
   
   /* Create two unequal columns that sits next to each other */
-  /* Sidebar/left column */
+  /* Sidebar/right column */
   .side {
     flex: 40%; /* Set the width of the sidebar */
     background-color: #f1f1f1; /* Grey background color */
@@ -59,6 +59,21 @@
   /* Main column */
   .main {
     flex: 60%; /* Set the width of the main content */
+    background-color: white; /* White background color */
+    padding: 20px; /* Some padding */
+  }
+
+  /* Create two equal columns that sits next to each other */
+    /* First part */
+  .projectOne {
+    flex: 50%; /* Set the width of the sidebar */
+    background-color: #f1f1f1; /* Grey background color */
+    padding: 20px; /* Some padding */
+  }
+  
+  /* Second part */
+  .projectTwo {
+    flex: 50%; /* Set the width of the main content */
     background-color: white; /* White background color */
     padding: 20px; /* Some padding */
   }
