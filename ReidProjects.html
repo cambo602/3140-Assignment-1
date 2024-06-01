@@ -1,29 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<title>Page Title</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="styles.css">
-<style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-</style>
-</head>
-<body>
-  <div class="header header-reid">
-    <h1>Reid's Projects</h1>
-    <p>How I keep myself busy</p>
-  </div>
-  <div class="navbar">
-    <a href="CameronResume.html">Cameron's Resume</a>
-    <a href="CameronProjects.html">Cameron's Projects</a>
-    <a href="ReidProjects.html" class="right"> Reid's Proejcts</a>
-    <a href="ReidResume.html" class="right"> Reid's Resume</a>
-    
-  </div>
-  
+  <head>
+    <title>Page Title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header header-reid">
+      <h1>Reid's Projects</h1>
+      <p>How I keep myself busy</p>
+    </div>
+    <div class="navbar">
+      <a href="CameronResume.html">Cameron's Resume</a>
+      <a href="CameronProjects.html">Cameron's Projects</a>
+      <a href="ReidProjects.html" class="right"> Reid's Proejcts</a>
+      <a href="ReidResume.html" class="right"> Reid's Resume</a>
+    </div>
 
-</body>
+    <div class="row">
+      <div class="no-dots projectOne">
+        <li>
+          <div>
+            <div class="project">
+              <h2>My Website</h2>
+              <a href="https://www.reidtull.ca/">reidtull.ca</a>
+            </div>
+            <p>- Small website to connect my various social media accounts</p>
+            <p>- Made with React and Next.js, hosted on Vercal</p>
+            <p>
+              - Integrated Framer-Motion to create lively buttons and a more
+              reactive design
+            </p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="project">
+              <h2>Better Bot</h2>
+              <a href="https://github.com/akaowen7/better_bot"
+                >github.com/akaowen7/better_bot</a
+              >
+            </div>
+            <p>
+              - A Discord bot written in JS, then re-written in Python, that
+              interacts with the Discord and YouTube API to play music in group
+              calls.
+            </p>
+            <p>
+              - Manages downloads efficiently to avoid repeat downloads and to
+              use as little disk space as possible
+            </p>
+            <p>
+              - Responds to discord emotes, creating a simple user interface
+            </p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="project">
+              <h2>A Ways Down</h2>
+              <a href="https://akaowen.itch.io/a-ways-down"
+                >akaowen.itch.io/a-ways-down</a
+              >
+            </div>
+            <p>
+              - Short 2D platformer game made over 2 weeks as a part of a game
+              jam.
+            </p>
+            <p>
+              - Made with Unity and C#, built on an object orientated,
+              expandable codebase
+            </p>
+            <img
+              src="imgs/game1.png"
+              alt="A screenshot of the game A Ways Down"
+              style="display: block; margin-left: auto; margin-right: auto;"
+            />
+          </div>
+        </li>
+      </div>
+      <div class="no-dots projectTwo">
+        <li style="display: flex;">
+          <div>
+            <div class="project">
+              <h2>Acting Work</h2>
+              <a href="https://uottawatheatreclub.com/">uOttawa Theater Club</a>
+            </div>
+            <p>
+              - Stared as Father March and John Brooke in the clubs production
+              of Little Women
+            </p>
+            <p>
+              - Stared as Nick Bottom in the clubs production of A Midsummer
+              Night's Dream
+            </p>
+          </div>
+          <img
+            src="imgs/play.png"
+            alt="A picture of me in A Midsummer Night's Dream"
+            style="width: 30%; height: 30%; margin-left: .5em;"
+          >
+        </li>
+        <li>
+          <div>
+            <div class="project">
+              <h2>Production Work</h2>
+              <p>Korah C.V.S</p>
+            </div>
+            <p>
+              - Produced, organized, edited and hosted my school's Holiday
+              Concert video.
+            </p>
+            <p>
+              - Video production and staging of the school's Musical Production
+            </p>
+            <p>
+              - Created recording setup and recording software guides for people
+              filming parts at-home
+            </p>
+            <p>- Returned in 2022 to manage lighting in school production</p>
+          </div>
+        </li>
+      </div>
+    </div>
+  </body>
 </html>

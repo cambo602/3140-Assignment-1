@@ -80,3 +80,13 @@
   width: 50%;
   object-fit: contain;
 }
+
+.no-dots {
+  list-style-type: none;
+}
+
+.project {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
