@@ -90,3 +90,13 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.contact p {
+  margin: 0;
+  margin-left: .5em;
+}
+
+.bit {
+  display: flex; 
+  padding-bottom: .5em;
+}
