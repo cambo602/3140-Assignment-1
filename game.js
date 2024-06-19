@@ -1,52 +1,52 @@
-// tracks if a disc is being moved, int is what pillar it is above
 let discInAir = 0;
 let moveCount = 0;
 let discCount = 5;
 
+function reset() {
+  document.getElementById("click1").disabled = false;
+  document.getElementById("click2").disabled = false;
+  document.getElementById("click3").disabled = false;
+
+  // Reset move count
+  moveCount = 0;
+  discInAir = 0;
+  document.querySelector("#score").textContent = "Moves: " + moveCount;
+
+  // Remove all discs from pillars
+  let pillarInt = 1;
+  let pillar = document.querySelector(`#pillar${pillarInt}`);
+  while (pillar.children.length > 1) {
+    pillar.removeChild(pillar.lastChild);
+  }
+  pillarInt = 2;
+  pillar = document.querySelector(`#pillar${pillarInt}`);
+  while (pillar.children.length > 1) {
+    pillar.removeChild(pillar.lastChild);
+  }
+  pillarInt = 3;
+  pillar = document.querySelector(`#pillar${pillarInt}`);
+  while (pillar.children.length > 1) {
+    pillar.removeChild(pillar.lastChild);
+  }
+
+  const floats = document.getElementsByClassName("float");
+  for (let float of floats) {
+    float.innerHTML = "";
+  }
+
+  // Add discs to pillar 1
+  pillarInt = 1;
+  const pillar1 = document.querySelector(`#pillar${pillarInt}`);
+  for (let i = 1; i <= discCount; i++) {
+    const disc = document.createElement("div");
+    disc.classList.add("disc", `d${i}`);
+    pillar1.appendChild(disc);
+  }
+}
+
 // this function does all the game logic, if there is no disc in the air
 // it moves the top most disc from the clicked pillar to the floating area.
 // if there is a disc in the air it moves it to the clicked pillar if it is a valid move.
-function reset(){
-    document.getElementById("click1").disabled = false;
-    document.getElementById("click2").disabled = false;
-    document.getElementById("click3").disabled = false;
-    
-    // Do not reset while disc in air
-    if (discInAir == 1) {
-        return;
-    }
-
-    // Reset move count
-    moveCount = 0;
-    document.querySelector("#score").textContent = "Moves: " + moveCount;
-
-    // Remove all discs from pillars
-    let pillarInt = 1;
-    let pillar = document.querySelector(`#pillar${pillarInt}`);
-    while (pillar.children.length > 1){
-        pillar.removeChild(pillar.lastChild);
-    }
-    pillarInt = 2;
-    pillar = document.querySelector(`#pillar${pillarInt}`);
-    while (pillar.children.length > 1){
-        pillar.removeChild(pillar.lastChild);
-    }
-    pillarInt = 3;
-    pillar = document.querySelector(`#pillar${pillarInt}`);
-    while (pillar.children.length > 1){
-        pillar.removeChild(pillar.lastChild);
-    }
-
-    // Add discs to pillar 1
-    pillarInt = 1;
-    const pillar1 = document.querySelector(`#pillar${pillarInt}`);
-    for (let i = 1; i <= discCount; i++){
-        const disc = document.createElement("div");
-        disc.classList.add("disc", `d${i}`);
-        pillar1.appendChild(disc);
-    }
-}
-
 function pillarClick(pillarInt) {
   // if a disc is not in the air move it there
   if (discInAir == 0) {
@@ -102,24 +102,25 @@ function pillarClick(pillarInt) {
 }
 
 function checkWin() {
-   // Check if pillar 2, 3 have all discs
-    let pillarInt = 2;
-    let pillar = document.querySelector(`#pillar${pillarInt}`);
-    if (pillar.children.length == discCount+1){
-        document.querySelector("#score").textContent = "Moves: " + moveCount + " - You Win!";
-        // disable all pillars click box
-        document.getElementById("click1").disabled = true;
-        document.getElementById("click2").disabled = true;
-        document.getElementById("click3").disabled = true;
-        
-    }
-    pillarInt = 3;
-    pillar = document.querySelector(`#pillar${pillarInt}`);
-    if (pillar.children.length == discCount+1){
-        document.querySelector("#score").textContent = "Moves: " + moveCount + " - You Win!";
-        // disable all pillars
-        document.getElementById("click1").disabled = true;
-        document.getElementById("click2").disabled = true;
-        document.getElementById("click3").disabled = true;
-    }
+  // Check if pillar 2, 3 have all discs
+  let pillarInt = 2;
+  let pillar = document.querySelector(`#pillar${pillarInt}`);
+  if (pillar.children.length == discCount + 1) {
+    document.querySelector("#score").textContent =
+      "Moves: " + moveCount + " - You Win!";
+    // disable all pillars click box
+    document.getElementById("click1").disabled = true;
+    document.getElementById("click2").disabled = true;
+    document.getElementById("click3").disabled = true;
+  }
+  pillarInt = 3;
+  pillar = document.querySelector(`#pillar${pillarInt}`);
+  if (pillar.children.length == discCount + 1) {
+    document.querySelector("#score").textContent =
+      "Moves: " + moveCount + " - You Win!";
+    // disable all pillars
+    document.getElementById("click1").disabled = true;
+    document.getElementById("click2").disabled = true;
+    document.getElementById("click3").disabled = true;
+  }
 }
