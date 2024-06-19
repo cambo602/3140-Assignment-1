@@ -101,15 +101,3 @@
   padding-bottom: .5em;
 }
 
-.score {
-  display: flex; 
-  max-width: fit-content;
-  margin-inline: auto;
-  justify-content: space-between; 
-  padding: 0 1em; 
-}
-
-.reset {
-  display: block; 
-  margin: auto; 
-}

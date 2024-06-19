@@ -121,3 +121,26 @@
     width: 8vw;
     min-width: 70px
   }
+
+  .score {
+    display: flex; 
+    max-width: fit-content;
+    margin-inline: auto;
+    justify-content: space-between; 
+    padding: 0 1em; 
+  }
+  
+  .reset {
+      cursor: pointer;
+      position: absolute;
+      left: 50%;
+      font-size: 21px;
+      transform: translateX(-50%);
+      outline: none;
+      display: flex;
+    flex-direction: column;
+    align-items: center;
+   padding: .5rem;
+    width: calc(10vw + 2rem);
+    border-radius: 1rem;
+    }

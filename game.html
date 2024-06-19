@@ -11,6 +11,7 @@
         font-family: Arial, Helvetica, sans-serif;
       }
     </style>
+    <script src="https://kit.fontawesome.com/f43e4323c8.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <div class="navbar">
@@ -25,9 +26,8 @@
       <div class="gameInfo">
         <div class="score" id="score">Moves: 0</div>
         <!-- Reset button on new line centered-->
-        <button class="reset" onclick="reset()">Reset</button>
+        <button class="reset" onClick="reset()" title="Reset"><i class="fa-sharp fa-solid fa-arrow-rotate-right"></i> Reset</button>
       </div>
-      
       <div class="stage">
         <!-- The pillars stack from the bottom up, so the "stand" is at the top of this list -->
         <button class="clickbox" id="click1" onclick="pillarClick(1)">
@@ -53,9 +53,6 @@
             <div class="stand"></div>
           </div>
         </button>
-        
       </div>
-      
-
     </body>
 </html>
