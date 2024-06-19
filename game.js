@@ -3,7 +3,7 @@ let discInAir = 0;
 
 // this function does all the game logic, if there is no disc in the air
 // it moves the top most disc from the clicked pillar to the floating area.
-//
+// if there is a disc in the air it moves it to the clicked pillar if it is a valid move.
 
 function pillarClick(pillarInt) {
   // if a disc is not in the air move it there
