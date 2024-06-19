@@ -25,52 +25,69 @@
   * {
     box-sizing: border-box;
   }
-  .game{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-  }
 
   .stage {
-    height: 180px;
-    background: gray;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-radius: 5px;
-    gap: 10px;
-    padding: 10px;
+    --_width: 300px;
+    min-width: var(--_width);
+    min-height: var(--_width);
+    position: relative;
   }
 
   .pillar {
-    width: 100px;
-    height: 160px;
-    background: green;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-  }
-
-  .stem {
-    width: 7px;
-    height: 140px;
+    width: 10px;
+    height: 300;
     background: black;
     position: absolute;
-    border-radius: 5px;
+    border-radius: 100vh;
+    
+  }
+  .pillar1 {
+    left: 70px;
+  }
+  .pillar2 {
+    left: 145px;
+  }
+  .pillar3 {
+    left: 220px;
   }
 
-.plate{
-    width: 115px;
+  .stand {
+    position: absolute;
     height: 10px;
-    background: brown;
-    border-radius: 10px;
-    z-index: 1;
-}
+    width: 300;
+    background: black;
+    bottom: 0;
+    border-radius: 100vh;
+  }
 
 .disc {
-    height: 18px;
-    border-radius: 3px;
-    z-index: 1;
+  height: 10px;
+  position: absolute;
+  z-index: 1;
+  border-radius: 100vh;
+  transition: translate 0.5s;
+}
+
+.disc1 {
+  --_pos: calc(-50% + 75px);
+  --_place: 1;
+  background-color: red;
+  width: 30px;
+  transform: translate(var(--_pos), calc(250px + var(--_place) * 10px));
+}
+
+.disc2 {
+  --_pos: calc(-50% + 75px);
+  --_place: 2;
+  background-color: blue;
+  width: 50px;
+  transform: translate(var(--_pos), calc(250px + var(--_place) * 10px));
+}
+
+.disc3 {
+  --_pos: calc(-50% + 75px);
+  --_place: 3;
+  background-color: green;
+  width: 70px;
+  transform: translate(var(--_pos), calc(250px + var(--_place) * 10px));
 }
