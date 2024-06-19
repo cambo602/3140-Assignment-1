@@ -27,67 +27,65 @@
   }
 
   .stage {
-    --_width: 300px;
-    min-width: var(--_width);
-    min-height: var(--_width);
-    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 20%;
+    padding-left: 20%;
+    padding-top: 5rem;
   }
 
   .pillar {
-    width: 10px;
-    height: 300;
-    background: black;
-    position: absolute;
-    border-radius: 100vh;
-    
-  }
-  .pillar1 {
-    left: 70px;
-  }
-  .pillar2 {
-    left: 145px;
-  }
-  .pillar3 {
-    left: 220px;
+    width: 30px;
+    height: 350px;
+    background: grey;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
   }
 
   .stand {
-    position: absolute;
     height: 10px;
-    width: 300;
-    background: black;
-    bottom: 0;
+    width: 15vw;
+    background: grey;
     border-radius: 100vh;
   }
 
 .disc {
-  height: 10px;
-  position: absolute;
+  height: 40px;
+  width: 100px;
+  overflow: visible;
   z-index: 1;
+  position: relative;
   border-radius: 100vh;
-  transition: translate 0.5s;
 }
 
-.disc1 {
-  --_pos: calc(-50% + 75px);
-  --_place: 1;
-  background-color: red;
-  width: 30px;
-  transform: translate(var(--_pos), calc(250px + var(--_place) * 10px));
+.disc.d1 {
+  background-color: rgb(232, 23, 23);
+  width: 20vw;
+  min-width: 150px
 }
 
-.disc2 {
-  --_pos: calc(-50% + 75px);
-  --_place: 2;
+.disc.d2 {
   background-color: blue;
-  width: 50px;
-  transform: translate(var(--_pos), calc(250px + var(--_place) * 10px));
+  width: 17vw;
+  min-width: 130px
 }
 
-.disc3 {
-  --_pos: calc(-50% + 75px);
-  --_place: 3;
+.disc.d3 {
   background-color: green;
-  width: 70px;
-  transform: translate(var(--_pos), calc(250px + var(--_place) * 10px));
+  width: 14vw;
+  min-width: 110px
+}
+
+.disc.d4 {
+  background-color: purple;
+  width: 11vw;
+  min-width: 90px
+}
+
+.disc.d5 {
+  background-color: rgb(233, 233, 30);
+  width: 8vw;
+  min-width: 70px
 }
