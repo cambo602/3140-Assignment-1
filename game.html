@@ -21,9 +21,14 @@
       <a href="ReidResume.html" class="right"> Reid's Resume</a>
     </div>
       <!--Towers of hanoi game, 3 pillars sitting next to each other and a reset button -->
-      <div class="stage">
-        <!--Text to display score -->
+      <!--Text to display score -->
+      <div class="gameInfo">
         <div class="score" id="score">Moves: 0</div>
+        <!-- Reset button on new line centered-->
+        <button class="reset" onclick="reset()">Reset</button>
+      </div>
+      
+      <div class="stage">
         <!-- The pillars stack from the bottom up, so the "stand" is at the top of this list -->
         <button class="clickbox" id="click1" onclick="pillarClick(1)">
           <div class="float" id="float1"></div>
@@ -48,9 +53,9 @@
             <div class="stand"></div>
           </div>
         </button>
-        <!-- Reset button -->
-        <button class="reset" onclick="reset()">Reset</button>
+        
       </div>
+      
 
     </body>
 </html>
