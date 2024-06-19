@@ -66,8 +66,6 @@ function pillarClick(pillarInt) {
     // now a disc is in the air above this pillar
     discInAir = pillarInt;
   } else {
-    moveCount++;
-    document.querySelector("#score").textContent = "Moves: " + moveCount;
     // get the floating disc
     const disc = document.querySelector(`#float${discInAir} > div`);
     if (!disc) {
@@ -95,6 +93,8 @@ function pillarClick(pillarInt) {
 
     // now no disc is in the air
     discInAir = 0;
+    moveCount++;
+    document.querySelector("#score").textContent = "Moves: " + moveCount;
 
     // check if the game is won
     checkWin();
