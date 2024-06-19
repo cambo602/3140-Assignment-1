@@ -22,8 +22,10 @@
     </div>
       <!--Towers of hanoi game, 3 pillars sitting next to each other and a reset button -->
       <div class="stage">
+        <!--Text to display score -->
+        <div class="score" id="score">Moves: 0</div>
         <!-- The pillars stack from the bottom up, so the "stand" is at the top of this list -->
-        <button class="clickbox" onclick="pillarClick(1)">
+        <button class="clickbox" id="click1" onclick="pillarClick(1)">
           <div class="float" id="float1"></div>
           <div class="pillar" id="pillar1">
             <div class="stand"></div>
@@ -34,18 +36,20 @@
             <div class="disc d5" id='disc5'></div>
           </div>
         </button>
-        <button class="clickbox" onclick="pillarClick(2)">
+        <button class="clickbox" id="click2" onclick="pillarClick(2)">
           <div class="float" id="float2"></div>
           <div class="pillar" id="pillar2">
             <div class="stand"></div>
           </div>
         </button>
-        <button class="clickbox" onclick="pillarClick(3)">
+        <button class="clickbox" id="click3" onclick="pillarClick(3)">
           <div class="float" id="float3"></div>
           <div class="pillar" id="pillar3">
             <div class="stand"></div>
           </div>
         </button>
+        <!-- Reset button -->
+        <button class="reset" onclick="reset()">Reset</button>
       </div>
 
     </body>
