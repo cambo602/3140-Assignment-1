@@ -1,5 +1,5 @@
 # The Game
-The Towers of Hanoi is a classic problem that is often used to teach recursion. The problem consists of three rods and a number of disks of different sizes which can slide onto any rod. The objective of the puzzle is to move the entire stack of disks from the first rod to the last rod, obeying the following rules:
+The Towers of Hanoi is an old well known game/problem. The problem consists of three rods and a number of disks of different sizes which can slide onto any rod. The objective of the puzzle is to move the entire stack of disks from the first rod to the last rod, while obeying the following rules:
 
 1. Only one disk can be moved at a time.
 
@@ -10,6 +10,10 @@ The Towers of Hanoi is a classic problem that is often used to teach recursion. 
 The game will track the number of moves the player makes, and the player can reset the game at any time.
 
 # Design System
+
+## Design Philosophy
+We wanted the state of this game to be mostly handled by the HTML, in this case the position of the rings is entirely tracked by their physical position in the HTML. Other more complex state data was handled in the JS like the move tracker. Some things like the discInAir var track stuff that actually could be managed by the HTML, but that would increase complexity and in this case is fine to be handled JS side.
+
 ## Structural Components
 - Header
     - The header contains the navigation bar, it is consistent across all pages.
