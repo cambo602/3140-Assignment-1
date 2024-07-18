@@ -127,7 +127,7 @@ require_once('_config.php');
             }
           };
 
-          scoreRequest.open("GET", "/public/api.php?action=increaseScore", true);
+          scoreRequest.open("GET", "api.php?action=increaseScore", true);
           scoreRequest.send();
 
           // check if the game is won
