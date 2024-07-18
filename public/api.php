@@ -10,6 +10,10 @@ switch ($_GET["action"] ?? "version") {
     $_SESSION['score']++;
     $data = "Moves" . $_SESSION['score'];
     break;
+  case "resetScore":
+    $_SESSION['score']=0;
+    $data = "Moves" . $_SESSION['score'];
+    break;
   default:
     $data = "Hanoi Game API v1.0";
     break;

@@ -23,6 +23,11 @@ require_once('_config.php');
       let moveCount = 0;
       let discCount = 5;
 
+      // on document load call reset
+      document.addEventListener("DOMContentLoaded", function () {
+        reset();
+      });
+
       function reset() {
         document.getElementById("click1").disabled = false;
         document.getElementById("click2").disabled = false;
@@ -31,7 +36,22 @@ require_once('_config.php');
         // Reset move count
         moveCount = 0;
         discInAir = 0;
-        document.querySelector("#score").textContent = "Moves: " + moveCount;
+        
+        const scoreRequest = new XMLHttpRequest();
+
+          scoreRequest.onreadystatechange = function () {
+            if (scoreRequest.readyState == XMLHttpRequest.DONE) {
+              if (scoreRequest.status == 200) {
+                document.querySelector("#score").textContent =
+                  scoreRequest.responseText;
+              }
+            }
+          };
+
+          scoreRequest.open("GET", "api.php?action=resetScore", true);
+          scoreRequest.send();
+
+          document.querySelector("#score").textContent = "Moves: " + moveCount;
 
         // Remove all discs from pillars
         let pillarInt = 1;
