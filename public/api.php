@@ -54,21 +54,6 @@ switch ($_GET["action"] ?? "version") {
     $_SESSION['score']=0;
     $data = "Moves" . $_SESSION['score'];
     break;
-  case "checkLeaderScore":
-      // get the 10  scores from the "database" leaderBoardDB.json
-      $leaderBoard = json_decode(file_get_contents('leaderBoardDB.json'), true);
-      // if the score is less than the first score in the leaderBoard than replace it, if not check the next one etc
-      $score = $leaderBoard['scores'];
-      foreach ($score as $score) {
-        echo $score['score'];
-        if ($_SESSION['score'] < $score) {
-          //$score = $_SESSION['score'];
-          //break;
-        }
-      }
-      // save the leaderBoard back to the "database"
-      file_put_contents('leaderBoardDB.json', json_encode($leaderBoard));
-      break;
   default:
     $data = "Hanoi Game API v1.0";
     break;

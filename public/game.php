@@ -162,18 +162,6 @@ require_once('_config.php');
         if (pillar.children.length == discCount + 1) {
           document.querySelector("#score").textContent =
             "Moves: " + moveCount + " - You Win!";
-            const scoreRequest = new XMLHttpRequest();
-
-          scoreRequest.onreadystatechange = function () {
-            if (scoreRequest.readyState == XMLHttpRequest.DONE) {
-              if (scoreRequest.status == 200) {
-                pass;
-              }
-            }
-          };
-
-          scoreRequest.open("GET", "api.php?action=checkLeaderScore", true);
-          scoreRequest.send();
           // disable all pillars click box
           document.getElementById("click1").disabled = true;
           document.getElementById("click2").disabled = true;
