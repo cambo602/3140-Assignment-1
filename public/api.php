@@ -50,6 +50,10 @@ switch ($_GET["action"] ?? "version") {
     $data -> valid=true;
     $data -> diskState=$_SESSION['discs'];
     break;
+  case "resetScore":
+    $_SESSION['score']=0;
+    $data = "Moves" . $_SESSION['score'];
+    break;
   default:
     $data = "Hanoi Game API v1.0";
     break;
