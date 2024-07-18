@@ -94,7 +94,20 @@ function pillarClick(pillarInt) {
     // now no disc is in the air
     discInAir = 0;
     moveCount++;
-    document.querySelector("#score").textContent = "Moves: " + moveCount;
+
+    const scoreRequest = new XMLHttpRequest();
+
+    scoreRequest.onreadystatechange = function () {
+      if (scoreRequest.readyState == XMLHttpRequest.DONE) {
+        if (scoreRequest.status == 200) {
+          document.querySelector("#score").textContent =
+            scoreRequest.responseText;
+        }
+      }
+    };
+
+    scoreRequest.open("GET", "/public/api.php?action=increaseScore", true);
+    scoreRequest.send();
 
     // check if the game is won
     checkWin();
