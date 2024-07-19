@@ -70,6 +70,10 @@ switch ($_GET["action"] ?? "version") {
       // Save the updated leaderboard back to the "database"
       file_put_contents('leaderBoardDB.json', json_encode($leaderBoard));
       break;
+  case "getLeaderBoard":
+    $leaderBoard = json_decode(file_get_contents('leaderBoardDB.json'), true);
+    $data = $leaderBoard['scores'];
+    break;
   default:
     $data = "Hanoi Game API v1.0";
     break;
