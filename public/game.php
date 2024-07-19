@@ -8,7 +8,7 @@ require_once('_config.php');
     <title>Page Title</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../game.css" />
+    <link rel="stylesheet" href="game.css" />
     <style>
       body {
         font-family: Arial, Helvetica, sans-serif;
@@ -21,10 +21,10 @@ require_once('_config.php');
     <script>
       let discCount = 5;
 
+      const stand = '<div class="stand"></div>'
+
       function makeDisc(discNumber) {
-        // sorry
-        const numbers = [5,4,3,2,1];
-        return `<div class="disc d${numbers[discNumber]}" id="disc${numbers[discNumber]}"></div>`;
+        return `<div class="disc d${discNumber}" id="disc${discNumber}"></div>`;
       }
 
       // on document load call reset
@@ -79,35 +79,35 @@ require_once('_config.php');
           scoreRequest.send();
 
         // Remove all discs from pillars
-        let pillarInt = 1;
-        let pillar = document.querySelector(`#pillar${pillarInt}`);
-        while (pillar.children.length > 1) {
-          pillar.removeChild(pillar.lastChild);
-        }
-        pillarInt = 2;
-        pillar = document.querySelector(`#pillar${pillarInt}`);
-        while (pillar.children.length > 1) {
-          pillar.removeChild(pillar.lastChild);
-        }
-        pillarInt = 3;
-        pillar = document.querySelector(`#pillar${pillarInt}`);
-        while (pillar.children.length > 1) {
-          pillar.removeChild(pillar.lastChild);
-        }
+        // let pillarInt = 1;
+        // let pillar = document.querySelector(`#pillar${pillarInt}`);
+        // while (pillar.children.length > 1) {
+        //   pillar.removeChild(pillar.lastChild);
+        // }
+        // pillarInt = 2;
+        // pillar = document.querySelector(`#pillar${pillarInt}`);
+        // while (pillar.children.length > 1) {
+        //   pillar.removeChild(pillar.lastChild);
+        // }
+        // pillarInt = 3;
+        // pillar = document.querySelector(`#pillar${pillarInt}`);
+        // while (pillar.children.length > 1) {
+        //   pillar.removeChild(pillar.lastChild);
+        // }
 
-        const floats = document.getElementsByClassName("float");
-        for (let float of floats) {
-          float.innerHTML = "";
-        }
+        // const floats = document.getElementsByClassName("float");
+        // for (let float of floats) {
+        //   float.innerHTML = "";
+        // }
 
-        // Add discs to pillar 1
-        pillarInt = 1;
-        const pillar1 = document.querySelector(`#pillar${pillarInt}`);
-        for (let i = 1; i <= discCount; i++) {
-          const disc = document.createElement("div");
-          disc.classList.add("disc", `d${i}`);
-          pillar1.appendChild(disc);
-        }
+        // // Add discs to pillar 1
+        // pillarInt = 1;
+        // const pillar1 = document.querySelector(`#pillar${pillarInt}`);
+        // for (let i = 1; i <= discCount; i++) {
+        //   const disc = document.createElement("div");
+        //   disc.classList.add("disc", `d${i}`);
+        //   pillar1.appendChild(disc);
+        // }
       }
 
       function pillarClick(pillarInt) {
@@ -125,7 +125,7 @@ require_once('_config.php');
               for (let i = 0; i < 3; i++) {
                 const pillar = document.getElementById(`pillar${i+1}`);
 
-                pillar.innerHTML = "";
+                pillar.innerHTML = stand;
 
                 if (!response.diskState[i]) {
                   continue;
@@ -134,6 +134,17 @@ require_once('_config.php');
                 response.diskState[i].forEach((disc) => {
                   pillar.innerHTML = makeDisc(disc) + pillar.innerHTML;
                 });
+              }
+
+              if (response.diskInAir[0] != null) {
+                console.log(`float${response.diskInAir[0]}`);
+                const float = document.getElementById(`float${response.diskInAir[0]}`);
+                float.innerHTML = makeDisc(response.diskInAir[1]);
+              } else {
+                const floats = document.getElementsByClassName("float");
+                for (let float of floats) {
+                  float.innerHTML = "";
+                }
               }
             }
           }
@@ -222,24 +233,24 @@ require_once('_config.php');
     <div class="stage">
       <!-- The pillars stack from the bottom up, so the "stand" is at the top of this list -->
       <button class="clickbox" id="click1" onclick="pillarClick(1)">
-        <div class="float" id="float1"></div>
+        <div class="float" id="float0"></div>
         <div class="pillar" id="pillar1">
-          <div class="stand"></div>
           <div class="disc d1" id="disc1"></div>
           <div class="disc d2" id="disc2"></div>
           <div class="disc d3" id="disc3"></div>
           <div class="disc d4" id="disc4"></div>
           <div class="disc d5" id="disc5"></div>
+          <div class="stand"></div>
         </div>
       </button>
       <button class="clickbox" id="click2" onclick="pillarClick(2)">
-        <div class="float" id="float2"></div>
+        <div class="float" id="float1"></div>
         <div class="pillar" id="pillar2">
           <div class="stand"></div>
         </div>
       </button>
       <button class="clickbox" id="click3" onclick="pillarClick(3)">
-        <div class="float" id="float3"></div>
+        <div class="float" id="float2"></div>
         <div class="pillar" id="pillar3">
           <div class="stand"></div>
         </div>
