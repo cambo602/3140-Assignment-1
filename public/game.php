@@ -160,14 +160,11 @@ require_once('_config.php');
         let pillarInt = 2;
         let pillar = document.querySelector(`#pillar${pillarInt}`);
         if (pillar.children.length == discCount + 1) {
-          document.querySelector("#score").textContent =
-            "Moves: " + moveCount + " - You Win!";
             const scoreRequest = new XMLHttpRequest();
 
           scoreRequest.onreadystatechange = function () {
             if (scoreRequest.readyState == XMLHttpRequest.DONE) {
               if (scoreRequest.status == 200) {
-                pass;
               }
             }
           };
@@ -178,6 +175,8 @@ require_once('_config.php');
           document.getElementById("click1").disabled = true;
           document.getElementById("click2").disabled = true;
           document.getElementById("click3").disabled = true;
+          document.querySelector("#score").textContent =
+            "Moves: " + moveCount + " - You Win!";
         }
         pillarInt = 3;
         pillar = document.querySelector(`#pillar${pillarInt}`);

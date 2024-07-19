@@ -62,8 +62,8 @@ switch ($_GET["action"] ?? "version") {
       foreach ($score as $score) {
         echo $score['score'];
         if ($_SESSION['score'] < $score) {
-          //$score = $_SESSION['score'];
-          //break;
+          $score = $_SESSION['score'];
+          break;
         }
       }
       // save the leaderBoard back to the "database"
