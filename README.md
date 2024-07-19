@@ -2,6 +2,9 @@
 Cameron Harrison
 300233006
 
+Reid Tull
+300228749
+
 This game is a simple Towers of Hanoi implementation
 
 The game now uses php to store the game state/score, and logic which is stored in a session variable
