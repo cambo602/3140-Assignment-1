@@ -55,18 +55,18 @@ switch ($_GET["action"] ?? "version") {
       $data -> score = $_SESSION['score'];
     }
     break;
-  case "resetScore":
-    $_SESSION['score']=0;
-    $data = $_SESSION['score'];
-    break;
   case 'reset':
+    $data = new stdClass;
+    $_SESSION['score'] = 0;
     $_SESSION['discs'] = [
       [5, 4, 3, 2, 1],
       [],
       []
     ];
     $_SESSION['discInAir'] = [null, null];
-    $data = "reset";
+    $data -> diskInAir = $_SESSION['discInAir'];
+    $data -> diskState = $_SESSION['discs'];
+    $data -> score = $_SESSION['score'];
     break;
   case "checkLeaderScore":
     // get the 10 scores from the "database" leaderBoardDB.json
