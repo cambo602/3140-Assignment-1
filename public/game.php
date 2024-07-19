@@ -230,7 +230,7 @@ require_once('_config.php');
     <div class="navbar">
       <a href="CameronResume.html">Cameron's Resume</a>
       <a href="CameronProjects.html">Cameron's Projects</a>
-      <a href="game.html"> Game</a>
+      <a href="/public/game.php"> Game</a>
       <a href="ReidProjects.html" class="right"> Reid's Proejcts</a>
       <a href="ReidResume.html" class="right"> Reid's Resume</a>
     </div>
