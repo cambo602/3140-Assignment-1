@@ -19,9 +19,13 @@ require_once('_config.php');
       crossorigin="anonymous"
     ></script>
     <script>
-      let discInAir = 0;
-      let moveCount = 0;
       let discCount = 5;
+
+      function makeDisc(discNumber) {
+        // sorry
+        const numbers = [5,4,3,2,1];
+        return `<div class="disc d${numbers[discNumber]}" id="disc${numbers[discNumber]}"></div>`;
+      }
 
       // on document load call reset
       document.addEventListener("DOMContentLoaded", function () {
@@ -106,74 +110,44 @@ require_once('_config.php');
         }
       }
 
-      // this function does all the game logic, if there is no disc in the air
-      // it moves the top most disc from the clicked pillar to the floating area.
-      // if there is a disc in the air it moves it to the clicked pillar if it is a valid move.
       function pillarClick(pillarInt) {
-        // if a disc is not in the air move it there
-        if (discInAir == 0) {
-          // get the top most disc from pillar
-          const disc = document.querySelector(
-            `#pillar${pillarInt} > div:last-of-type`
-          );
-          // the !disc.classList.contains("disc") is here to make sure we don't select the stand
-          if (!disc || !disc.classList.contains("disc")) {
-            return;
-          }
-          // remove the disc from the pillar and add it to the floating area
-          const discHTML = disc.outerHTML;
-          disc.remove();
-          document.querySelector(`#float${pillarInt}`).innerHTML += discHTML;
+        const moveRequest = new XMLHttpRequest();
 
-          // now a disc is in the air above this pillar
-          discInAir = pillarInt;
-        } else {
-          // get the floating disc
-          const disc = document.querySelector(`#float${discInAir} > div`);
-          if (!disc) {
-            return;
-          }
+        moveRequest.onreadystatechange = function () {
+          if (moveRequest.readyState == XMLHttpRequest.DONE) {
+            if (moveRequest.status == 200) {
+              const response = JSON.parse(moveRequest.responseText);
+              console.log(pillarInt, response);
 
-          // get the size of the disc and the pillar element we want to move it to
-          const discSize = parseInt(disc.classList.item(1).substring(1));
-          const pillar = document.querySelector(`#pillar${pillarInt}`);
+              document.querySelector("#score").textContent = "Moves: " +
+                response.score;
 
-          // if the pillar has discs
-          if (pillar.children.length > 1) {
-            const topDisc = pillar.querySelector("div:last-of-type");
+              for (let i = 0; i < 3; i++) {
+                const pillar = document.getElementById(`pillar${i+1}`);
 
-            // if the disc we want to move is bigger than the top disc of the pillar
-            if (parseInt(topDisc.classList.item(1).substring(1)) > discSize) {
-              return;
-            }
-          }
+                pillar.innerHTML = "";
 
-          // remove the disc from the floating area and add it to the pillar
-          const discHTML = disc.outerHTML;
-          disc.remove();
-          pillar.innerHTML += discHTML;
+                if (!response.diskState[i]) {
+                  continue;
+                }
 
-          // now no disc is in the air
-          discInAir = 0;
-          moveCount++;
-
-          const scoreRequest = new XMLHttpRequest();
-
-          scoreRequest.onreadystatechange = function () {
-            if (scoreRequest.readyState == XMLHttpRequest.DONE) {
-              if (scoreRequest.status == 200) {
-                document.querySelector("#score").textContent = "Moves: " +
-                  scoreRequest.responseText;
+                response.diskState[i].forEach((disc) => {
+                  pillar.innerHTML = makeDisc(disc) + pillar.innerHTML;
+                });
               }
             }
-          };
+          }
+        };
 
-          scoreRequest.open("GET", "api.php?action=increaseScore", true);
-          scoreRequest.send();
+        moveRequest.open(
+          "GET",
+          "api.php?action=moveDisc&pillar=" + (pillarInt - 1),
+          true
+        );
+        moveRequest.send();
 
-          // check if the game is won
-          checkWin();
-        }
+        // check if the game is won
+        checkWin();
       }
 
       function checkWin() {
