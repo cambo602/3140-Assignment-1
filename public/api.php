@@ -27,10 +27,6 @@ switch ($_GET["action"] ?? "version") {
     if ($_SESSION['discInAir'][0] == null) {
       $_SESSION['discInAir'][0] = $pillar;
       $_SESSION['discInAir'][1] = array_pop($_SESSION['discs'][$pillar]);
-
-      $data -> diskInAir = $_SESSION['discInAir'];
-      $data -> diskState = $_SESSION['discs'];
-      $data -> score = $_SESSION['score'];
     }
     else{
       if ( !empty($_SESSION['discs'][$pillar]) &&
@@ -49,11 +45,18 @@ switch ($_GET["action"] ?? "version") {
       array_push($_SESSION['discs'][$pillar], $_SESSION['discInAir'][1]);
       $_SESSION['discInAir'] = [null, null];
       $_SESSION['score']++;
-
-      $data -> diskInAir = $_SESSION['discInAir'];
-      $data -> diskState = $_SESSION['discs'];
-      $data -> score = $_SESSION['score'];
     }
+
+    if (count($_SESSION['discs'][2]) == 5 or count($_SESSION['discs'][1]) == 5){
+      $data -> win = true;
+    }
+    else{
+      $data -> win = false;
+    }
+
+    $data -> diskInAir = $_SESSION['discInAir'];
+    $data -> diskState = $_SESSION['discs'];
+    $data -> score = $_SESSION['score'];
     break;
   case 'reset':
     $data = new stdClass;

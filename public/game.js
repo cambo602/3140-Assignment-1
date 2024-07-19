@@ -93,6 +93,7 @@ function pillarClick(pillarInt) {
         const response = JSON.parse(moveRequest.responseText);
 
         display(response);
+        checkWin(response.win);
       }
     }
   };
@@ -105,14 +106,10 @@ function pillarClick(pillarInt) {
   moveRequest.send();
 
   // check if the game is won
-  checkWin();
 }
 
-function checkWin() {
-  // Check if pillar 2, 3 have all discs
-  let pillarInt = 2;
-  let pillar = document.querySelector(`#pillar${pillarInt}`);
-  if (pillar.children.length == discCount + 1) {
+function checkWin(win) {
+  if (win) {
     const scoreRequest = new XMLHttpRequest();
 
     scoreRequest.onreadystatechange = function () {
@@ -128,29 +125,8 @@ function checkWin() {
     scoreRequest.open("GET", "api.php?action=checkLeaderScore", true);
     scoreRequest.send();
     // disable all pillars click box
-    document.getElementById("click1").disabled = true;
-    document.getElementById("click2").disabled = true;
-    document.getElementById("click3").disabled = true;
-  }
-  pillarInt = 3;
-  pillar = document.querySelector(`#pillar${pillarInt}`);
-  if (pillar.children.length == discCount + 1) {
-    const scoreRequest = new XMLHttpRequest();
 
-    scoreRequest.onreadystatechange = function () {
-      if (scoreRequest.readyState == XMLHttpRequest.DONE) {
-        if (scoreRequest.status == 200) {
-          document.querySelector("#score").textContent =
-            "Moves: " + moveCount + " - You Win!";
-          updateLeaderBoard();
-        }
-      }
-    };
-
-    scoreRequest.open("GET", "api.php?action=checkLeaderScore", true);
-    scoreRequest.send();
-
-    // disable all pillars
+    document.querySelector("#score").textContent += " - You Win!";
     document.getElementById("click1").disabled = true;
     document.getElementById("click2").disabled = true;
     document.getElementById("click3").disabled = true;

@@ -18,7 +18,7 @@ require_once('_config.php');
       src="https://kit.fontawesome.com/f43e4323c8.js"
       crossorigin="anonymous"
     ></script>
-    <script src="../game.js"></script>
+    <script src="game.js"></script>
   </head>
   <body>
     <div class="navbar">
