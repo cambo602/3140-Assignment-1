@@ -16,7 +16,7 @@ if(!isset($_SESSION['discs'])){
 switch ($_GET["action"] ?? "version") {
   case "increaseScore":
     $_SESSION['score']++;
-    $data = "Moves " . $_SESSION['score'];
+    $data = $_SESSION['score'];
     break;
   case "moveTopDisc":
     $data = new stdClass;
@@ -52,7 +52,7 @@ switch ($_GET["action"] ?? "version") {
     break;
   case "resetScore":
     $_SESSION['score']=0;
-    $data = "Moves" . $_SESSION['score'];
+    $data = $_SESSION['score'];
     break;
     case "checkLeaderScore":
       // get the 10 scores from the "database" leaderBoardDB.json

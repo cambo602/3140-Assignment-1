@@ -42,7 +42,7 @@ require_once('_config.php');
           scoreRequest.onreadystatechange = function () {
             if (scoreRequest.readyState == XMLHttpRequest.DONE) {
               if (scoreRequest.status == 200) {
-                document.querySelector("#score").textContent =
+                document.querySelector("#score").textContent = "Moves: " +
                   scoreRequest.responseText;
               }
             }
@@ -50,8 +50,6 @@ require_once('_config.php');
 
           scoreRequest.open("GET", "api.php?action=resetScore", true);
           scoreRequest.send();
-
-          document.querySelector("#score").textContent = "Moves: " + moveCount;
 
         // Remove all discs from pillars
         let pillarInt = 1;
@@ -141,7 +139,7 @@ require_once('_config.php');
           scoreRequest.onreadystatechange = function () {
             if (scoreRequest.readyState == XMLHttpRequest.DONE) {
               if (scoreRequest.status == 200) {
-                document.querySelector("#score").textContent =
+                document.querySelector("#score").textContent = "Moves: " +
                   scoreRequest.responseText;
               }
             }
@@ -165,6 +163,8 @@ require_once('_config.php');
           scoreRequest.onreadystatechange = function () {
             if (scoreRequest.readyState == XMLHttpRequest.DONE) {
               if (scoreRequest.status == 200) {
+                document.querySelector("#score").textContent =
+                "Moves: " + moveCount + " - You Win!";
               }
             }
           };
