@@ -59,6 +59,15 @@ switch ($_GET["action"] ?? "version") {
     $_SESSION['score']=0;
     $data = $_SESSION['score'];
     break;
+  case 'reset':
+    $_SESSION['discs'] = [
+      [5, 4, 3, 2, 1],
+      [],
+      []
+    ];
+    $_SESSION['discInAir'] = [null, null];
+    $data = "reset";
+    break;
   case "checkLeaderScore":
     // get the 10 scores from the "database" leaderBoardDB.json
     $leaderBoard = json_decode(file_get_contents('leaderBoardDB.json'), true);
@@ -75,14 +84,9 @@ switch ($_GET["action"] ?? "version") {
     // Save the updated leaderboard back to the "database"
     file_put_contents('leaderBoardDB.json', json_encode($leaderBoard));
     break;
-  case 'reset':
-    $_SESSION['discs'] = [
-      [5, 4, 3, 2, 1],
-      [],
-      []
-    ];
-    $_SESSION['discInAir'] = [null, null];
-    $data = "reset";
+  case "getLeaderBoard":
+    $leaderBoard = json_decode(file_get_contents('leaderBoardDB.json'), true);
+    $data = $leaderBoard['scores'];
     break;
   default:
     $data = "Hanoi Game API v1.0";

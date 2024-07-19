@@ -26,8 +26,31 @@ require_once('_config.php');
       // on document load call reset
       document.addEventListener("DOMContentLoaded", function () {
         reset();
+        updateLeaderBoard();
       });
 
+      function updateLeaderBoard() {
+        const leaderBoardRequest = new XMLHttpRequest();
+
+        leaderBoardRequest.onreadystatechange = function () {
+          if (leaderBoardRequest.readyState == XMLHttpRequest.DONE) {
+            if (leaderBoardRequest.status == 200) {
+              const leaderBoard = JSON.parse(leaderBoardRequest.responseText);
+              const leaderBoardElement = document.querySelector("#leaderBoardChild");
+              leaderBoardElement.innerHTML = "";
+              for (let i = 0; i < leaderBoard.length; i++) {
+                const score = leaderBoard[i];
+                const scoreElement = document.createElement("div");
+                scoreElement.textContent = i+1 + ". " + score  + " moves";
+                leaderBoardElement.appendChild(scoreElement);
+              }
+            }
+          }
+        };
+
+        leaderBoardRequest.open("GET", "api.php?action=getLeaderBoard", true);
+        leaderBoardRequest.send();
+      }
       function reset() {
         document.getElementById("click1").disabled = false;
         document.getElementById("click2").disabled = false;
@@ -164,7 +187,8 @@ require_once('_config.php');
             if (scoreRequest.readyState == XMLHttpRequest.DONE) {
               if (scoreRequest.status == 200) {
                 document.querySelector("#score").textContent =
-                "Moves: " + moveCount + " - You Win!";
+              "Moves: " + moveCount + " - You Win!";
+              updateLeaderBoard();
               }
             }
           };
@@ -175,14 +199,25 @@ require_once('_config.php');
           document.getElementById("click1").disabled = true;
           document.getElementById("click2").disabled = true;
           document.getElementById("click3").disabled = true;
-          document.querySelector("#score").textContent =
-            "Moves: " + moveCount + " - You Win!";
         }
         pillarInt = 3;
         pillar = document.querySelector(`#pillar${pillarInt}`);
         if (pillar.children.length == discCount + 1) {
-          document.querySelector("#score").textContent =
-            "Moves: " + moveCount + " - You Win!";
+          const scoreRequest = new XMLHttpRequest();
+
+          scoreRequest.onreadystatechange = function () {
+            if (scoreRequest.readyState == XMLHttpRequest.DONE) {
+              if (scoreRequest.status == 200) {
+                document.querySelector("#score").textContent =
+              "Moves: " + moveCount + " - You Win!";
+              updateLeaderBoard();
+              }
+            }
+          };
+
+          scoreRequest.open("GET", "api.php?action=checkLeaderScore", true);
+          scoreRequest.send();
+          
           // disable all pillars
           document.getElementById("click1").disabled = true;
           document.getElementById("click2").disabled = true;
@@ -235,6 +270,11 @@ require_once('_config.php');
           <div class="stand"></div>
         </div>
       </button>
+    </div>
+    <div class="leaderBoard">
+    <h2>Leader Board</h2>
+      <div id="leaderBoardChild">
+      </div>
     </div>
   </body>
 </html>
