@@ -49,21 +49,6 @@ switch ($_GET["action"] ?? "version") {
 
     if (count($_SESSION['discs'][2]) == 5 or count($_SESSION['discs'][1]) == 5){
       $data -> win = true;
-
-      $servername = "localhost";
-      $username = "root";
-      $password = "admin";
-      $dbname = "csi3140";
-
-      $conn = mysqli_connect($servername, $username, $password, $dbname);
-
-      if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-      }
-
-      $sql = "INSERT INTO scores (username, score) VALUES ('username', '{$_SESSION['score']}')";
-
-      mysqli_query($conn, $sql);
     }
     else{
       $data -> win = false;
@@ -85,6 +70,24 @@ switch ($_GET["action"] ?? "version") {
     $data -> diskInAir = $_SESSION['discInAir'];
     $data -> diskState = $_SESSION['discs'];
     $data -> score = $_SESSION['score'];
+    break;
+  case 'addScore':
+    $usename = $_GET["username"] ?? "username";
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "admin";
+    $dbname = "csi3140";
+
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+    if (!$conn) {
+      die("Connection failed: " . mysqli_connect_error());
+    }
+
+    $sql = "INSERT INTO scores (username, score) VALUES ('" . $usename . "', '" . $_SESSION['score'] . "')";
+
+    mysqli_query($conn, $sql);
     break;
   default:
     $data = "Hanoi Game API v1.0";

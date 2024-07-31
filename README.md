@@ -5,7 +5,16 @@ Cameron Harrison
 Reid Tull
 300228749
 
-This game is a simple Towers of Hanoi implementation
+# Running this
+Setup a MySQL database, set the username to `root` and the password to `admin`.
+
+add a database called `csi3140` and execute the sql commands in `setup.sql`
+
+Ensure you have the mysql php extension enabled with the line `extension=php_mysqli.dll` in you `php.ini`
+
+run `php -S localhost:8000` in the repo root and navigate to `http://localhost:8000/public/game.php`
+
+# This game is a simple Towers of Hanoi implementation
 
 The game now uses php to store the game state/score, and logic which is stored in a session variable
 

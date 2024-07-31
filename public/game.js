@@ -37,31 +37,7 @@ function display(response) {
 // on document load call reset
 document.addEventListener("DOMContentLoaded", function () {
   reset();
-  // updateLeaderBoard();
 });
-
-// function updateLeaderBoard() {
-//   const leaderBoardRequest = new XMLHttpRequest();
-
-//   leaderBoardRequest.onreadystatechange = function () {
-//     if (leaderBoardRequest.readyState == XMLHttpRequest.DONE) {
-//       if (leaderBoardRequest.status == 200) {
-//         const leaderBoard = JSON.parse(leaderBoardRequest.responseText);
-//         const leaderBoardElement = document.querySelector("#leaderBoardChild");
-//         leaderBoardElement.innerHTML = "";
-//         for (let i = 0; i < leaderBoard.length; i++) {
-//           const score = leaderBoard[i];
-//           const scoreElement = document.createElement("div");
-//           scoreElement.textContent = i + 1 + ". " + score + " moves";
-//           leaderBoardElement.appendChild(scoreElement);
-//         }
-//       }
-//     }
-//   };
-
-//   leaderBoardRequest.open("GET", "api.php?action=getLeaderBoard", true);
-//   leaderBoardRequest.send();
-// }
 
 function reset() {
   document.getElementById("click1").disabled = false;
@@ -115,14 +91,14 @@ function checkWin(win) {
     scoreRequest.onreadystatechange = function () {
       if (scoreRequest.readyState == XMLHttpRequest.DONE) {
         if (scoreRequest.status == 200) {
-          document.querySelector("#score").textContent =
-            "Moves: " + moveCount + " - You Win!";
-          // updateLeaderBoard();
+          location.reload();
         }
       }
     };
 
-    scoreRequest.open("GET", "api.php?action=checkLeaderScore", true);
+    let name = prompt("Enter username");
+
+    scoreRequest.open("GET", `api.php?action=addScore&username=${name}`, true);
     scoreRequest.send();
     // disable all pillars click box
 
