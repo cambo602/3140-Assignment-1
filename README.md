@@ -16,13 +16,18 @@ run `php -S localhost:8000` in the repo root and navigate to `http://localhost:8
 
 # This game is a simple Towers of Hanoi implementation
 
-The game now uses php to store the game state/score, and logic which is stored in a session variable
+The game now has a backend database, to access the website, launch the php server and navigate to the index.html by going to localhost:4000/public/index.html, you can also navigate directly to the game by going to localhost:4000/public/game.php
 
-The game now has a leaderboard which is stored in a json file, and is displayed on the game page
+The game is now fully functional and has a backend database to store the the leaderboard scores
 
-The game uses api calls to update the game state and leaderboard, as well as to make changes to the game state and score
+You can now play the game and submit your score to the leaderboard, the leaderboard the game will prompt you to enter your name and then submit your score to the leaderboard after you have won the game
 
-The front end of the game makes use of AJAX to make api calls to the backend to control the game state, increment/ reset score, control the logic of the game, and update the leaderboard
+The database is implemented using MySQL and the database is hosted locally
+
+
+
+
+
 
 
 
