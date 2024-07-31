@@ -1,5 +1,14 @@
 <?php
-require_once('_config.php');
+$servername = "localhost";
+$username = "root";
+$password = "admin";
+$dbname = "csi3140";
+
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+if (!$conn) {
+  die("Connection failed: " . mysqli_connect_error());
+}
 ?>
 
 <!DOCTYPE html>
@@ -67,8 +76,19 @@ require_once('_config.php');
     </div>
     <div class="leaderBoard">
     <h2>Leader Board</h2>
-      <div id="leaderBoardChild">
-      </div>
+      <?php
+        $sql = "SELECT * FROM scores";
+        $result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+          // output data of each row
+          while($row = mysqli_fetch_assoc($result)) {
+            echo "Name: " . $row["username"] . " | Score: " . $row["score"] . "<br>";
+          }
+        } else {
+          echo "0 results";
+        }
+      ?>
     </div>
   </body>
 </html>
