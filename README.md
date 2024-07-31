@@ -12,11 +12,9 @@ add a database called `csi3140` and execute the sql commands in `setup.sql`
 
 Ensure you have the mysql php extension enabled with the line `extension=php_mysqli.dll` in you `php.ini`
 
-run `php -S localhost:8000` in the repo root and navigate to `http://localhost:8000/public/game.php`
+run `php -S localhost:8000` in the repo root and navigate to `http://localhost:8000/public/game.php`, or to visit the rest of the website go to `localhost:4000/public/index.html`
 
 # This game is a simple Towers of Hanoi implementation
-
-The game now has a backend database, to access the website, launch the php server and navigate to the index.html by going to localhost:4000/public/index.html, you can also navigate directly to the game by going to localhost:4000/public/game.php
 
 The game is now fully functional and has a backend database to store the the leaderboard scores
 
